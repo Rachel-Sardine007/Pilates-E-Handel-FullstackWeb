@@ -1,0 +1,87 @@
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+
+  /* background image */
+  background-image: url("../assets/home.png");
+
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* left to right gradient */
+  background: linear-gradient(
+    to right,
+    rgba(255, 252, 242, 1),
+    rgba(0, 0, 0, 0)
+  );
+
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 600px;
+  margin-left: 80px;
+
+  text-align: left;
+  color: var(--dark-brown);
+}
+
+.hero h1 {
+  font-size: 56px;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+
+  color: var(--primary);
+  font-family: var(--heading);
+  font-weight: 1000;
+}
+
+
+.about-studio {
+  background-color: var(--primary);
+  display: flex;
+  gap: 4rem;
+  padding: 6rem 4rem;
+  align-items: center;
+
+  color: var(--light-floral);
+}
+
+.about-image img {
+  width: 400px;
+  border-radius: 20px;
+}
+
+.popular-products {
+  padding: 4rem;
+}
+
+.product-grid {
+  display: flex;
+  gap: 2rem;
+}
+
+.product-card {
+  background:var(--light);
+  padding: 1rem;
+  border-radius: 20px;
+  width: 300px;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 15px;
+}
