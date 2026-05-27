@@ -108,6 +108,36 @@ function Home() {
                     </p>
                 </div>
             </section>
+            
+            {/* Testimonials */}
+            <section className="review">
+                <div className="review-header">
+                    <h2>TESTIMONIALS</h2>
+                </div>
+                <div className="review-grip">
+                    <div className="review-card">
+                        <p>Good review Good review Good review 
+                            <br />
+                            Good review Good review Good review 
+                        </p>
+                        <h3>Client A.</h3>
+                    </div>
+                                        <div className="review-card">
+                        <p>Good review Good review Good review 
+                            <br />
+                            Good review Good review Good review 
+                        </p>
+                        <h3>Client B.</h3>
+                    </div>
+                                        <div className="review-card">
+                        <p>Good review Good review Good review 
+                            <br />
+                            Good review Good review Good review 
+                        </p>
+                        <h3>Client C.</h3>
+                    </div>
+                </div>
+            </section>
         </div>
      );
 }
