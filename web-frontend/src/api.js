@@ -37,27 +37,15 @@ async function request(path, options = {}) {
     data = text;
   }
 
-  // res.ok är false om statuskoden är fel.
-  // Exempel:
-  // 404
-  // 401
-  // 500
+  // check res 
   if (!res.ok) {
-    // Försöker hitta ett bra felmeddelande.
     const err =
-      // Om backend skickade:
-      // { message: "Fel" }
       (data && data.message) ||
-      // Annars använd HTTP-status.
       res.statusText ||
-      // Fallback om inget annat finns.
       "Request failed";
-
-    // Skapar ett JavaScript Error.
     throw new Error(err);
   }
 
-  // Returnerar datan om allt gick bra.
   return data;
 }
 
@@ -65,23 +53,23 @@ async function request(path, options = {}) {
 // USER REQUESTS
 // ======================
 
-// Registrerar en ny användare.
-export async function register({ name, email, password }) {
+// register 
+export async function register({ username, email, password }) {
   // Skickar POST-request till backend.
   return request("/users/register", {
     // HTTP-metod.
     method: "POST",
 
-    // Gör om JavaScript-objekt till JSON-sträng.
+    // Js object --> json
     body: JSON.stringify({
-      name,
+      username,
       email,
       password,
     }),
   });
 }
 
-// Loggar in användaren.
+// login
 export async function login({ email, password }) {
   return request("/users/login", {
     method: "POST",
@@ -94,78 +82,52 @@ export async function login({ email, password }) {
   });
 }
 
-// Hämtar alla kontakter.
-export async function getContacts() {
-  // GET används för att hämta data.
-  return request("/contacts", {
+// get all orders
+export async function getOrder() {
+  return request("/products", {
     method: "GET",
   });
 }
 
-// Skapar en ny kontakt.
-export async function createContact(contact) {
-  return request("/contacts", {
-    method: "POST",
-
-    // Skickar kontakt-objektet som JSON.
-    body: JSON.stringify(contact),
+// get all products
+export async function getProducts() {
+  return request("/products", {
+    method: "GET",
   });
 }
 
-// Tar bort en kontakt via ID.
-export async function deleteContact(id) {
-  // Exempel:
-  // /contacts/5
-  return request(`/contacts/${id}`, {
-    method: "DELETE",
-  });
-}
-
-// Uppdaterar en kontakt.
-export async function updateContact(id, contact) {
-  return request(`/contacts/${id}`, {
-    // PUT används ofta för uppdatering.
-    method: "PUT",
-
-    // Skickar nya kontaktuppgifter.
-    body: JSON.stringify(contact),
-  });
-}
 
 // ======================
 // AUTH FUNCTIONS
 // ======================
 
-// Loggar ut användaren.
+// logout
 export function logout() {
-  // Tar bort token från localStorage.
+  // remove token from localstorage
   localStorage.removeItem("token");
 
   try {
-    // Skickar ett custom event.
-    // Detta säger till appen:
-    // "Authentication har ändrats"
+    // custom event
     window.dispatchEvent(new Event("authChange"));
   } catch (e) {
-    // Ignorerar eventuella fel.
+    // ingore if error
   }
 }
 
-// Sparar token när användaren loggat in.
+// save token if login
 export function saveToken(token) {
-  // Sparar token i browsern.
+  // save in browser
   localStorage.setItem("token", token);
 
   try {
-    // Trigger auth-event så UI kan uppdateras direkt.
+    // Trigger auth-event --> update UI
     window.dispatchEvent(new Event("authChange"));
   } catch (e) {
-    // Ignorerar eventuella fel.
+    // ingore if error 
   }
 }
 
-// Exporterar alla funktioner som ett objekt.
-// Gör det möjligt att importera hela API:t enklare.
+// Export
 export default {
   register,
   login,

@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 //@route POST /api/users/register
 //@access public
 const registerUser = asyncHandler(async (req, res) => {
-const {username, email, password} = req.body;
+const {name, email, password} = req.body;
 if(!username || !email || !password){
     res.status(400);
     throw new Error("Please fill all the fields");

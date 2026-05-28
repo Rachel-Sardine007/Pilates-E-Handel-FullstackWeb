@@ -9,9 +9,7 @@ function Register() {
             <h3>Join our community</h3>
         </div>
         <div className='register-input'>
-            <p>First Name</p>
-            <input required type="text" />
-            <p>Last Name</p>
+            <p>Username</p>
             <input required type="text" />
             <p>Email</p>
             <input required type='text'/>
