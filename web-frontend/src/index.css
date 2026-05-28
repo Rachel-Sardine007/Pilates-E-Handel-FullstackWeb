@@ -18,6 +18,8 @@
   --light: #ffffff;
   --light-floral: #FFFCF2;
   --accent: #A5C4D4;
+  --primary-opacity:rgba(123, 109, 141, 0.15);
+  --light-opacity: rgba(255, 252, 242, 0.5);
 
   --sans: "PT Serif", serif;
   --heading: "Inter", sans-serif;
