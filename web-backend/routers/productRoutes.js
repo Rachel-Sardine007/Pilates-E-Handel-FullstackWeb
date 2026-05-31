@@ -10,18 +10,18 @@ const {getProducts,
 // router.use(validateToken);
 
 //GET all products
-router.route('/').get(getProducts).post(createProduct);
+router.route('/').get(getProducts);
 
 //POST product
 router.route('/').post(createProduct);
 
 //GET product
-router.route('/:id').get(getProduct).put(updateProduct).delete(deleteProduct);
+router.route('/:id').get(getProduct);
 
 //PUT product
-// router.route('/:id').put(updateProduct);
+router.route('/:id').put(updateProduct);
 
 //DELETE product
-// router.route('/:id').delete(deleteProduct);
+router.route('/:id').delete(deleteProduct);
 
 module.exports = router;

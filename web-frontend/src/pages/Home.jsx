@@ -1,5 +1,5 @@
 import "./Home.css";
-import productImg from "../assets/product.png";
+
 
 function Home() {
     return ( 
@@ -34,11 +34,10 @@ function Home() {
                 </div>
 
                 <div className="product-grid">
-
                     <div className="product-card">
                         <img
-                        src={productImg}
-                        alt="Training set"
+                            src="/images/product.png"
+                            alt="Training set"
                         />
 
                         <h3>Training set</h3>
@@ -46,44 +45,6 @@ function Home() {
 
                         <button>Add to Cart</button>
                     </div>
-                    
-                    <div className="product-card">
-                        <img
-                        src={productImg}
-                        alt="Pilates socks"
-                        />
-
-                        <h3>Pilates socks</h3>
-                        <p>198 kr</p>
-
-                        <button>Add to Cart</button>
-                    </div>
-
-                    <div className="product-card">
-                        <img
-                        src={productImg}
-                        alt="Pilates gloves"
-                        />
-
-                        <h3>Pilates gloves</h3>
-                        <p>198 kr</p>
-
-                        <button>Add to Cart</button>
-                    
-                    </div>
-
-                    <div className="product-card">
-                        <img
-                        src={productImg}
-                        alt="Gift card"
-                        />
-
-                        <h3>Gift card</h3>
-                        <p>280 - 1000 kr</p>
-
-                        <button>Add to Cart</button>
-                    </div>
-
                 </div>
             </section>
 
@@ -92,7 +53,7 @@ function Home() {
             <section className="about-studio">
                 <div className="about-image">
                     <img
-                        src={productImg}
+                        src="/images/product.png"
                         alt="Pilates studio"
                     />
                 </div>

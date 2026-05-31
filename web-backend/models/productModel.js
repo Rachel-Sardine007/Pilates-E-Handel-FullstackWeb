@@ -19,9 +19,8 @@ const productSchema = new mongoose.Schema({
     description: {
         type: String,
     },
-    color: {
-        name: String,
-        hex: String
+    colors: {
+        type:[String],
     },
 },
 
