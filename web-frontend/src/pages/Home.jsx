@@ -2,9 +2,14 @@ import "./Home.css";
 import React, { useState, useEffect } from 'react';
 import {getProducts} from "../api.js";
 import { Link } from "react-router-dom";
+import { useCart } from '../contexts/CartContext.jsx';
 
 function Home() {
+    const {addToCart} = useCart();
+
     const [products, setProducts] = useState([]);
+    // for add to cart 
+    const [selectedColor, setSelectedColor] = useState({});
 
     // Get products
     useEffect(()=>{
@@ -21,6 +26,14 @@ function Home() {
         }
         fetchProducts();
     }, []);
+
+    // select color
+        const handleColorSelect = (productId, color) => {
+        setSelectedColor(prev => ({
+            ...prev,
+            [productId]: prev[productId] === color ? null : color // toggle off if same color selected
+        }));
+    };
 
     return ( 
         <div className='home'>
@@ -63,7 +76,32 @@ function Home() {
                             <h3>{product.name}</h3>
                             <p>{product.price}</p>
 
-                            <button>Add to Cart</button>
+                            <div className='color-options'>
+                            {(product.colors || []).map(color => (
+                                <span 
+                                    key={color}
+                                    className={`color ${color}`}  
+                                    onClick={()=> handleColorSelect(product._id, color)}
+                                    style={{
+                                        outline: selectedColor[product._id] === color ? '2px solid black' : 'none',
+                                        outlineOffset: '2px',
+                                        cursor:'pointer'
+                                    }}  
+                                />
+                            ))}
+                            </div>
+
+                            <button 
+                                className="product-btn"
+                                onClick={()=> {
+                                if (!selectedColor[product._id] && product.colors.length > 0){
+                                    alert('Please select a color');
+                                    return;
+                                }
+                                addToCart({...product, selectedColor: selectedColor[product._id]})
+                            }}>
+                                Add to Cart
+                            </button>
                         </div>
                     ))}
                 </div>

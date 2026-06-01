@@ -1,15 +1,20 @@
 import React from 'react';
-import { FiArrowLeft } from "react-icons/fi";
-import { FiXCircle } from "react-icons/fi";
+import { FiArrowLeft, FiXCircle, FiMinus, FiPlus} from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import { useCart } from '../contexts/CartContext';
 
 function Cart() {
+    const {cartItems, removeFromCart, updateQuantity, totalPrice, cartCount} = useCart();
+
+    const shipping = totalPrice >= 1000 || totalPrice === 0 ? 0 : 39;
+
     return ( 
         <div className="cart-page">
 
             <div className="cart-header">
                 <h1>Your cart</h1>
-                <p>3 ITEMS</p>
+                {/* dynamic count */}
+                <p>{cartCount} ITEMS</p> 
             </div>
 
             <div className="cart-container">
@@ -17,80 +22,87 @@ function Cart() {
                 {/* LEFT SIDE */}
                 <div className="cart-items">
 
-                <div className="cart-table-header">
-                    <span>Product</span>
-                    <span>Price</span>
-                    <span>Quantity</span>
-                    <span>Total</span>
-                </div>
-
-                <div className="cart-item">
-
-                    <div className="product-info">
-                    <img
-                        src="/images/product.png"
-                        alt="Training Set"
-                    />
-
-                    <div>
-                        <h3>Training set</h3>
-                        <p>Baby</p>
-                        <p>Blue</p>
-                    </div>
+                    <div className="cart-table-header">
+                        <span>Product</span>
+                        <span>Price</span>
+                        <span>Quantity</span>
+                        <span>Total</span>
                     </div>
 
-                    <p>390 kr</p>
+                    {/* dynamic items */}
+                    {cartItems.map(item => (
+                        <div className="cart-item" key={`${item._id}-${item.selectedColor}`}>
 
-                    <input
-                    type="number"
-                    value="1"
-                    min="1"
-                    readOnly
-                    />
+                            <div className="product-info">
+                                <img
+                                    src={item.image}
+                                    alt={item.name}
+                                />
 
-                    <p>390 kr</p>
+                                <div>
+                                    <h3>{item.name}</h3>
+                                    {item.selectedColor && <p>{item.selectedColor}</p>}
+                                </div>
+                            </div>
+
+                            {/* 单价 */}
+                            <p>{item.price} kr</p>
+                            
+                            {/* update quantity */}
+                            <div>
+                                <button onClick={()=> updateQuantity(item._id, -1)}><FiMinus className="icon-btn"/></button>
+                                <span>{item.quantity}</span>
+                                <button onClick={()=> updateQuantity(item._id, 1)}><FiPlus className="icon-btn" /></button>
+                            </div>
+
+                            {/* 商品总价 */}
+                            <p>{item.price * item.quantity}</p>
+
+                            {/* remove item */}
+                            <button  onClick={()=> removeFromCart(item._id)}>
+                                <FiXCircle className="icon-btn"/>
+                            </button>
+                        </div>
+                    ))}
+
+                    {/* empty cart */}
+                    {cartItems.length === 0 && <p>Your cart is empty.</p>}
 
                     <button className="remove-btn">
-                        <FiXCircle />
+                        <Link className="links" to="/shop"><FiArrowLeft className="icon-btn"/> Continue shopping</Link>
                     </button>
-
-                </div>
-
-                <button className="continue-btn">
-                    <Link to="/shop"><FiArrowLeft /> Continue shopping</Link>
-                </button>
 
                 </div>
 
                 {/* RIGHT SIDE */}
                 <div className="order-summary">
 
-                <h2>ORDER SUMMARY</h2>
+                    <h2>ORDER SUMMARY</h2>
 
-                <div className="summary-row">
-                    <span>Subtotal</span>
-                    <span>390 kr</span>
-                </div>
+                    <div className="summary-row">
+                        <span>Subtotal  </span>
+                        <span>{totalPrice} kr</span>
+                    </div>
 
-                <div className="summary-row">
-                    <span>Shipping</span>
-                    <span>39 kr</span>
-                </div>
+                    <div className="summary-row">
+                        <span>Shipping  </span>
+                        <span>{totalPrice === 0 ? 'Free': `${shipping} kr`}</span>
+                    </div>
 
-                <hr />
+                    <hr />
 
-                <div className="summary-total">
-                    <span>Total</span>
-                    <span>429 kr</span>
-                </div>
+                    <div className="summary-total">
+                        <span>Total  </span>
+                        <span>{totalPrice + shipping} kr</span>
+                    </div>
 
-                <button className="checkout-btn">
-                    Checkout
-                </button>
+                    <button className="product-btn">
+                        <Link className="links" to={'/checkout'}>Checkout</Link>
+                    </button>
 
-                <small>
-                    *Free shipping when shopping over 1000 kr.
-                </small>
+                    <small>
+                        *Free shipping when shopping over 1000 kr.
+                    </small>
 
                 </div>
             </div>

@@ -31,7 +31,7 @@ function Login() {
 
             login(response.accessToken, {
                 username: response.username,
-                email: response.email
+                email: response.email,
             })
             navigate('/');
         }catch(error){

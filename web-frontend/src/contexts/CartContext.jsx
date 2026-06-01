@@ -20,10 +20,13 @@ export function CartProvider({ children }) {
   // Lägg till produkt i korgen
   const addToCart = (product) => {
     setCartItems(prev => {
-      const exists = prev.find(item => item._id === product._id);
+      // same product + color 
+      const exists = prev.find(item => 
+        item._id === product._id && item.selectedColor === product.selectedColor
+      );
       if (exists) {
         return prev.map(item =>
-          item._id === product._id
+          item._id === product._id && item.selectedColor === product.selectedColor
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
