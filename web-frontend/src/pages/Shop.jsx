@@ -1,9 +1,27 @@
-import React from 'react';
-import productImg from '../assets/product.png';
+import React, { useState, useEffect } from 'react';
 import { FiPlusCircle } from "react-icons/fi";
 import "./Shop.css";
+import { getProducts } from '../api';
 
 function Shop() {
+    const [products, setProducts] = useState([]);
+
+    // Get products
+    useEffect(()=>{
+        const fetchProducts = async() =>{
+            try{
+                const data = await getProducts();
+
+                console.log("Api response:", data);
+
+                setProducts(data);
+            }catch(error){
+                console.log("Something wrong when getting products data", error.message);
+            }
+        }
+        fetchProducts();
+    }, []);
+
     return ( 
         <section className='shop-page'>
              {/* PAGE TITLE */}
@@ -50,43 +68,18 @@ function Shop() {
 
                     {/* PRODUCT CARD */}
                     <div className="product-card">
-                        <div className="product-image">
-                            <img
-                                src={productImg}
-                                alt="Training set"
+                        {products.map((product) => (
+                        <div className="product-card" key={product._id}>
+                            <img className = "product-img"
+                            src={product.image}
+                            alt={product.name}
                             />
-                            <FiPlusCircle id='add-icon'/>
-                        </div>
+                            <h3>{product.name}</h3>
+                            <p>{product.price}</p>
 
-                        <h2>Training set</h2>
-                        <p>390 kr</p>
-
-                        <div className="color-options">
-                        <span className="color black"></span>
-                        <span className="color brown"></span>
-                        <span className="color purple"></span>
-                        <span className="color blue"></span>
+                            <button>Add to Cart</button>
                         </div>
-                    </div>
-
-                    {/* PRODUCT CARD */}
-                    <div className="product-card">
-                        <div className="product-image">
-                            <img
-                                src={productImg}
-                                alt="Training set"
-                            />
-                            <FiPlusCircle id='add-icon'/>
-                        </div>
-
-                        <h2>Training set</h2>
-                        <p>390 kr</p>
-                        <div className="color-options">
-                            <span className="color black"></span>
-                            <span className="color brown"></span>
-                            <span className="color purple"></span>
-                            <span className="color blue"></span>
-                        </div>
+                    ))}
                     </div>
 
                 </section>

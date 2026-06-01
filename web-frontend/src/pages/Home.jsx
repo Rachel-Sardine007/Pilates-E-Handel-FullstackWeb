@@ -1,7 +1,27 @@
 import "./Home.css";
-
+import React, { useState, useEffect } from 'react';
+import {getProducts} from "../api.js";
+import { Link } from "react-router-dom";
 
 function Home() {
+    const [products, setProducts] = useState([]);
+
+    // Get products
+    useEffect(()=>{
+        const fetchProducts = async() =>{
+            try{
+                const data = await getProducts();
+
+                console.log("Api response:", data);
+
+                setProducts(data);
+            }catch(error){
+                console.log("Something wrong when getting products data", error.message);
+            }
+        }
+        fetchProducts();
+    }, []);
+
     return ( 
         <div className='home'>
             {/* Hero section */}
@@ -21,8 +41,8 @@ function Home() {
                         <br />
                         for every moment.
                     </p>
-                    <button>Shop Collection</button>
-                    <button>Explore Studio</button>
+                    <button><Link className="links" to="/shop">Shop Collection</ Link></button>
+                    <button><Link className="links" to="/about">Explore Studio</Link></button>
                 </div>
             </section>
 
@@ -34,17 +54,18 @@ function Home() {
                 </div>
 
                 <div className="product-grid">
-                    <div className="product-card">
-                        <img
-                            src="/images/product.png"
-                            alt="Training set"
-                        />
+                    {products.map((product) => (
+                        <div className="product-card" key={product._id}>
+                            <img className = "product-img"
+                            src={product.image}
+                            alt={product.name}
+                            />
+                            <h3>{product.name}</h3>
+                            <p>{product.price}</p>
 
-                        <h3>Training set</h3>
-                        <p>390 kr</p>
-
-                        <button>Add to Cart</button>
-                    </div>
+                            <button>Add to Cart</button>
+                        </div>
+                    ))}
                 </div>
             </section>
 

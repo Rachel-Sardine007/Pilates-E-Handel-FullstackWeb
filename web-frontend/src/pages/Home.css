@@ -4,7 +4,7 @@
   align-items: center;
 
   /* background image */
-  background-image: url("../assets/home.png");
+  background-image: url("/images/home.png");
 
   background-size: cover;
   background-position: center;
@@ -104,4 +104,8 @@
   align-items: center;
   justify-items: center;
   padding: 80px;
+}
+
+.links{
+  text-decoration: none;
 }

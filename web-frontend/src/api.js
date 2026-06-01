@@ -132,9 +132,6 @@ export default {
   register,
   login,
   getProducts,
-  createContact,
-  deleteContact,
-  updateContact,
   logout,
   saveToken,
 };

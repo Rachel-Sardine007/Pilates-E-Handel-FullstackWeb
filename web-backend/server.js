@@ -23,7 +23,7 @@ const cors = require("cors");
 
 // cors after express();
 app.use(cors({
-   origin: "http://localhost:5173/",
+   origin: "http://localhost:5173",
 }),
 );
 
