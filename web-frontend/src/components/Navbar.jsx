@@ -19,7 +19,7 @@ function Navbar() {
             <Link to={'/login'}>
                 <FiUser />
             </Link>
-            <Link to={'/user'}>
+            <Link to={'/cart'}>
                 <FiShoppingBag />
             </Link>
         </div>
