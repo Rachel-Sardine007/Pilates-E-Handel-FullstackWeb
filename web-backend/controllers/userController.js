@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 //@route POST /api/users/register
 //@access public
 const registerUser = asyncHandler(async (req, res) => {
-const {name, email, password} = req.body;
+const {username, email, password} = req.body;
 if(!username || !email || !password){
     res.status(400);
     throw new Error("Please fill all the fields");
@@ -29,17 +29,17 @@ if(!username || !email || !password){
     });
 
     console.log(`User created ${user}`);    
-    if(user){
-        res.status(201).json({
-            _id: user.id,
-            username: user.username,
-            email: user.email,
-        });
-    }else {
-            res.status(400);
-            throw new Error("User data is not valid");
-        };
-    res.status(201).json(user);
+
+    if(!user){
+        res.status(400);
+        throw new Error("User data is not valid");
+    }
+
+    res.status(201).json({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+    });
 });
 
 //@desc login a user
