@@ -1,5 +1,6 @@
 const express = require('express');
 const dotend = require('dotenv').config();
+const cors = require("cors");
 const errorHandler = require('./middleware/errorHandler');
 const { connect } = require('mongoose');
 const connectDB = require('./config/dbConnection');
@@ -18,12 +19,11 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// get cors
-const cors = require("cors");
 
 // cors after express();
 app.use(cors({
    origin: "http://localhost:5173",
+   credentials: true
 }),
 );
 

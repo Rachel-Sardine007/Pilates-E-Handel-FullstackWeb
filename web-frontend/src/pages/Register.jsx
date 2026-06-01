@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import {register} from "../api.js";
+import { registerUser } from "../api.js";
 
 function Register() {
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Register() {
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            await register(formData);
+            await registerUser(formData);
             navigate('/login');
         }catch(error){
             setError("Something went wrong. Please try again!");
@@ -59,7 +59,7 @@ function Register() {
                 
             </div>
             {error && <p className='error'>{error}</p>}
-            <button type='submit' className='btn'>Create Account</button>
+            <button type='submit' className='auth-btn'>Create Account</button>
         </form>
 
 

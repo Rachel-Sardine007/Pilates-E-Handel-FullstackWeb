@@ -54,7 +54,7 @@ async function request(path, options = {}) {
 // ======================
 
 // register 
-export async function register({ username, email, password }) {
+export async function registerUser ({ username, email, password }) {
   // Skickar POST-request till backend.
   return request("/users/register", {
     // HTTP-metod.
@@ -70,7 +70,7 @@ export async function register({ username, email, password }) {
 }
 
 // login
-export async function login({ email, password }) {
+export async function loginUser({ email, password }) {
   return request("/users/login", {
     method: "POST",
 
@@ -102,7 +102,7 @@ export async function getProducts() {
 // ======================
 
 // logout
-export function logout() {
+export function logoutUser() {
   // remove token from localstorage
   localStorage.removeItem("token");
 
@@ -129,9 +129,9 @@ export function saveToken(token) {
 
 // Export
 export default {
-  register,
-  login,
+  registerUser,
+  loginUser,
   getProducts,
-  logout,
+  logoutUser,
   saveToken,
 };
