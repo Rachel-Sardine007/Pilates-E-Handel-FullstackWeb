@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { createOrder } from '../api.js';
 import { FiArrowLeft } from 'react-icons/fi';
+import './Checkout.css';
 
 function Checkout() {
     const navigate = useNavigate();
@@ -57,10 +58,9 @@ function Checkout() {
         <div className="checkout-page">
 
             <div className="checkout-header">
-                <h1>Checkout</h1>
-                <button>
-                    <Link className="links" to="/cart"><FiArrowLeft className="icon-btn"/> Back to Cart</Link>
-                </button>
+                <h2>CHECKOUT</h2>
+                
+                <Link className="links" to="/cart"><FiArrowLeft className="icon-btn"/> <u>Back to Cart</u></Link>
             </div>
 
             <div className="checkout-container">
@@ -69,19 +69,25 @@ function Checkout() {
                 <div className="checkout-info">
                     <form onSubmit={handleSubmit} className='checkout-form'>
                         <div className='checkout-input'>
-                            <h3>Shipping Information</h3>
-                            <hr />
-
-                            <p>Firstname</p>
-                            <input 
-                                required type="text" name='firstname'
-                                value={formData.firstname}
-                                onChange={handleChange}/>
-                            <p>Lastname</p>
-                            <input 
-                                required type="text" name='lastname'
-                                value={formData.lastname}
-                                onChange={handleChange}/>
+                            <div className='checkout-shipping'>
+                                <span className='checkout-info-header'>Shipping Information</span>
+                                <hr />
+                                <div className='checkout-info-name'>
+                                    <div>
+                                        <p>Firstname</p>
+                                        <input 
+                                            required type="text" name='firstname'
+                                            value={formData.firstname}
+                                            onChange={handleChange}/>
+                                    </div>
+                                    <div>
+                                        <p>Lastname</p>
+                                        <input 
+                                            required type="text" name='lastname'
+                                            value={formData.lastname}
+                                            onChange={handleChange}/>
+                                    </div>
+                                </div>
                             <p>Address</p>
                             <input 
                                 required type="text" name='address'
@@ -97,8 +103,9 @@ function Checkout() {
                                 required type="text" name='postcode'
                                 value={formData.postcode}
                                 onChange={handleChange}/>
-
-                            <h3>Payment Method</h3>
+                        </div>
+                        <div className='checkout-payment'>
+                            <span className='checkout-info-header'>Payment Method</span>
                             <hr />
 
                             <div className="payment-options">
@@ -109,7 +116,6 @@ function Checkout() {
                                         cursor: 'pointer'
                                     }}>
                                         Card 
-                                        <img src={'/images/payment-visa.png'} alt='Visa'/>
                                         <img src={'/images/payment-master.png'} alt='MasterCard'/>
                                 </span>
                                 <span         
@@ -132,6 +138,7 @@ function Checkout() {
                                 </span>
 
                         </div>
+                    </div>
                             {error && <p className='error'>{error}</p>}
                             <button disabled={loading} type='submit' className='checkout-btn'>
                                 {loading ? "Processing..." : "Pay"}
@@ -162,7 +169,7 @@ function Checkout() {
                                     </div>
                                 </div>
                                 {/* 商品总价 */}
-                                <p>{item.price * item.quantity} kr</p>
+                                <p>{item.quantity}st {item.price * item.quantity} kr</p>
                             </div>
                         ))}
                     </div>

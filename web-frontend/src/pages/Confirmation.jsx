@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import './Confirmation.css';
 
 function Confirmation() {
     const { user } = useAuth();
@@ -7,7 +8,7 @@ function Confirmation() {
     return ( 
         <div className="confirmation">
             <div className="confirmation-content">
-                <h1>Thank You For Your Order!</h1>
+                <h2>Thank You For Your Order!</h2>
 
                 <p>
                     Your order has been successfully placed and is now being processed.

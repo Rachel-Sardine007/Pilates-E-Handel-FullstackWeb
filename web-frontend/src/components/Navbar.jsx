@@ -15,12 +15,12 @@ function Navbar() {
         </div>
 
         <div className="nav-icons">
-            <FiSearch />
+            <FiSearch className="nav-icon"/>
             <Link to={'/login'}>
-                <FiUser />
+                <FiUser className="nav-icon"/>
             </Link>
             <Link to={'/cart'}>
-                <FiShoppingBag />
+                <FiShoppingBag className="nav-icon"/>
             </Link>
         </div>
     </nav>

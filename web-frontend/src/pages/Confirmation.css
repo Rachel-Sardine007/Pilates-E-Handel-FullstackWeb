@@ -1,0 +1,29 @@
+.confirmation{
+    height: 90vh;
+    display: flex;
+    background: var(--primary-opacity);
+
+    align-items: center;
+    justify-content:center;
+}
+
+.confirmation-content {
+  width: 60%;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  color: var(--dark-brown);
+}
+
+.confirmation-content p {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.confirmation-content h2 {
+  margin-bottom: 20px;
+}
+
+button{
+    width: 80%;
+}

@@ -127,46 +127,48 @@ function Shop() {
                 <section className="product-section">
 
                     {/* PRODUCT CARD */}
-                    {filteredProducts.map((product) => (
-                    <div className="product-card" key={product._id}>
-                        <img className = "product-img"
-                        src={product.image}
-                        alt={product.name}
-                        />
-                        <h3>{product.name}</h3>
-                        <p>{product.price} kr</p>
-                        <div className='color-options'>
-                            {(product.colors || []).map(color => (
-                                <span 
-                                    key={color}
-                                    className={`color ${color}`}  
-                                    onClick={()=> handleColorSelect(product._id, color)}
-                                    style={{
-                                        outline: selectedColor[product._id] === color ? '2px solid black' : 'none',
-                                        outlineOffset: '2px',
-                                        cursor:'pointer'
-                                    }}  
-                                />
-                            ))}
+                    <div className="product-grid">
+                        {filteredProducts.map((product) => (
+                        <div className="product-card" key={product._id}>
+                            <img className = "product-img"
+                            src={product.image}
+                            alt={product.name}
+                            />
+                            <p>{product.name}</p>
+                            <p>{product.price} kr</p>
+                            <div className='color-options'>
+                                {(product.colors || []).map(color => (
+                                    <span 
+                                        key={color}
+                                        className={`color ${color}`}  
+                                        onClick={()=> handleColorSelect(product._id, color)}
+                                        style={{
+                                            outline: selectedColor[product._id] === color ? '2px solid black' : 'none',
+                                            outlineOffset: '2px',
+                                            cursor:'pointer'
+                                        }}  
+                                    />
+                                ))}
+                            </div>
+
+                            <button 
+                                className="product-btn"
+                                onClick={()=> {
+                                    if (!selectedColor[product._id] && product.colors.length > 0){
+                                        alert('Please select a color');
+                                        return;
+                                    }
+                                    addToCart({...product, selectedColor: selectedColor[product._id]})
+                                }}>
+                                Add to Cart
+                            </button>
                         </div>
+                        ))}
 
-                        <button 
-                            className="product-btn"
-                            onClick={()=> {
-                                if (!selectedColor[product._id] && product.colors.length > 0){
-                                    alert('Please select a color');
-                                    return;
-                                }
-                                addToCart({...product, selectedColor: selectedColor[product._id]})
-                            }}>
-                            Add to Cart
-                        </button>
+                        {filteredProducts.length === 0 && (
+                            <p>No products match your filter.</p>
+                        )}
                     </div>
-                    ))}
-
-                    {filteredProducts.length === 0 && (
-                        <p>No products match your filter.</p>
-                    )}
                 </section>
             </div>
         </section> );

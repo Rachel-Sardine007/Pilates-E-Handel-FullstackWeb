@@ -31,4 +31,5 @@
     background-color: var(--light-floral);
     color: var(--dark-brown);
     padding: 10px;
+    text-align: center;
 }

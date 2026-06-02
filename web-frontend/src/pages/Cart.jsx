@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiArrowLeft, FiXCircle, FiMinus, FiPlus} from "react-icons/fi";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
+import './Cart.css';
 
 function Cart() {
     const {cartItems, removeFromCart, updateQuantity, totalPrice, cartCount} = useCart();
-
     const shipping = totalPrice >= 1000 || totalPrice === 0 ? 0 : 39;
+
+    const navigate = useNavigate();
+    const {isLoggedIn} = useAuth();
+    const [error, setError] = useState('');
+
+    const handleCheckout = () =>{
+        if(!isLoggedIn){
+            setError("Please log in to continue to checkout");
+            navigate('/login');
+            return;
+        }
+
+        navigate('/checkout');
+    }
 
     return ( 
         <div className="cart-page">
 
             <div className="cart-header">
-                <h1>Your cart</h1>
+                <h2>YOUR CART</h2>
                 {/* dynamic count */}
                 <p>{cartCount} ITEMS</p> 
             </div>
@@ -50,27 +65,25 @@ function Cart() {
                             
                             {/* update quantity */}
                             <div>
-                                <button onClick={()=> updateQuantity(item._id, -1)}><FiMinus className="icon-btn"/></button>
+                                <FiMinus className="icon-btn" onClick={()=> updateQuantity(item._id, -1)}/>
                                 <span>{item.quantity}</span>
-                                <button onClick={()=> updateQuantity(item._id, 1)}><FiPlus className="icon-btn" /></button>
+                                <FiPlus className="icon-btn" onClick={()=> updateQuantity(item._id, 1)}/>
                             </div>
 
                             {/* 商品总价 */}
                             <p>{item.price * item.quantity}</p>
 
                             {/* remove item */}
-                            <button  onClick={()=> removeFromCart(item._id)}>
-                                <FiXCircle className="icon-btn"/>
-                            </button>
+                            <FiXCircle className="icon-btn" onClick={()=> removeFromCart(item._id)}/>
                         </div>
                     ))}
 
                     {/* empty cart */}
                     {cartItems.length === 0 && <p>Your cart is empty.</p>}
 
-                    <button>
-                        <Link className="links" to="/shop"><FiArrowLeft className="icon-btn"/> Continue shopping</Link>
-                    </button>
+                    <p>
+                        <Link className="links" to="/shop"><FiArrowLeft className="icon-btn"/><u>Continue shopping</u></Link>
+                    </p>
 
                 </div>
 
@@ -96,10 +109,8 @@ function Cart() {
                         <span>{totalPrice + shipping} kr</span>
                     </div>
 
-                    <button className="product-btn">
-                        <Link className="links" to={'/checkout'}>Checkout</Link>
-                    </button>
-
+                    <button className="product-btn" onClick={handleCheckout}>Checkout</button>
+                    <br />
                     <small>
                         *Free shipping when shopping over 1000 kr.
                     </small>

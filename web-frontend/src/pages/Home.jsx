@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {getProducts} from "../api.js";
 import { Link } from "react-router-dom";
 import { useCart } from '../contexts/CartContext.jsx';
+import { FaStar } from "react-icons/fa";
 
 function Home() {
     const {addToCart} = useCart();
@@ -50,9 +51,7 @@ function Home() {
                         ELEGANCE
                     </h1>
                     <p className="hero-text">
-                        Premium pilates essentials 
-                        <br />
-                        for every moment.
+                        Premium pilates essentials for every moment.
                     </p>
                     <button><Link className="links" to="/shop">Shop Collection</ Link></button>
                     <button><Link className="links" to="/about">Explore Studio</Link></button>
@@ -73,8 +72,8 @@ function Home() {
                             src={product.image}
                             alt={product.name}
                             />
-                            <h3>{product.name}</h3>
-                            <p>{product.price}</p>
+                            <p>{product.name}</p>
+                            <p>{product.price} kr</p>
 
                             <div className='color-options'>
                             {(product.colors || []).map(color => (
@@ -117,9 +116,9 @@ function Home() {
                     />
                 </div>
                 <div className="about-text">
-                    <h3 className="section-subtitle">About FORMA</h3>
+                    <h2 className="section-subtitle">About FORMA</h2>
 
-                    <h2>A modern studio rooted in movement and balance.</h2>
+                    <h3>A modern studio rooted in movement and balance.</h3>
 
                     <p>
                         FORMA combines mindful pilates with premium essentials
@@ -140,6 +139,7 @@ function Home() {
                             <br />
                             Good review Good review Good review 
                         </p>
+                        <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         <h3>Client A.</h3>
                     </div>
                                         <div className="review-card">
@@ -147,6 +147,7 @@ function Home() {
                             <br />
                             Good review Good review Good review 
                         </p>
+                        <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         <h3>Client B.</h3>
                     </div>
                                         <div className="review-card">
@@ -154,6 +155,7 @@ function Home() {
                             <br />
                             Good review Good review Good review 
                         </p>
+                        <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         <h3>Client C.</h3>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../api.js';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import './Login.css'
 
 function Login() {
     const navigate = useNavigate();
@@ -44,28 +45,31 @@ function Login() {
 
     return ( 
     <div className='login'>
-        <div className='login-header'>
-            <h1>LOGIN</h1>
-            <h3>Welcome!</h3>
-        </div>
-        <form onSubmit={handleSubmit}>
-            <div className='login-input'>
-                <p>Email</p>
-                <input 
-                    required type="email" name='email'
-                    value={formData.email}
-                    onChange={handleChange}/>
-                <p>Password</p>
-                <input 
-                    required type="password" name='password'
-                    value={formData.password}
-                    onChange={handleChange}/>
-                <p>Forgot password?</p>
-                {error && <p className='error'>{error}</p>}
-            <button type='button' onClick={handleSubmit} className='auth-btn'>Login</button>
+        <div className='login-container'>
+            <div className='login-header'>
+                <h1>LOGIN</h1>
+                <h3>Welcome!</h3>
             </div>
-        </form>
-        <p>Don't have an account yet? <Link to={'/register'}>Register</Link> here</p>
+            <form onSubmit={handleSubmit}>
+                <div className='login-input'>
+                        <p>Email</p>
+                        <input 
+                            required type="email" name='email'
+                            value={formData.email}
+                            onChange={handleChange}/>
+                        <p>Password</p>
+                        <input 
+                            required type="password" name='password'
+                            value={formData.password}
+                            onChange={handleChange}/>
+                        <p><u>Forgot password?</u></p>
+                    </div>
+                    {error && <p className='error'>{error}</p>}
+                <button type='button' onClick={handleSubmit} className='auth-btn'>Login</button>
+                
+            </form>
+            <p>Don't have an account yet? <Link to={'/register'}><u>Register</u></Link> here</p>
+        </div>
     </div> 
     );
 }

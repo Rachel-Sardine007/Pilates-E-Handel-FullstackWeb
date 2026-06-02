@@ -3,13 +3,7 @@ import productImg from '/images/product.png';
 
 function About() {
     return ( 
-        <div>
-            <div className="about-image">
-                <img
-                    src={productImg}
-                    alt="Pilates studio"
-                />
-            </div>
+        <div className='about'>
             <div className="about-text">
                 <h3 className="section-subtitle">About FORMA</h3>
 
@@ -20,6 +14,12 @@ function About() {
                     designed for everyday movement. Inspired by calm Nordic
                     interiors and intentional living.
                 </p>
+                <div className="about-image">
+                    <img
+                        src={productImg}
+                        alt="Pilates studio"
+                    />
+                </div>
             </div>
         </div>
      );

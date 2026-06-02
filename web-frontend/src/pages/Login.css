@@ -1,4 +1,4 @@
-.register-container{
+.login-container{
     height: 70vh;
     background: var(--primary-opacity);
     padding: 2rem;
@@ -9,7 +9,7 @@
     color: var(--dark-brown);
 }
 
-.register-input{
+.login-input{
     background-color: var(--light-opacity);
     margin: 15px;
     padding: 10px;

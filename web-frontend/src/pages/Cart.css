@@ -2,6 +2,7 @@
   padding: 3rem;
   background: var(--light-floral);
   min-height: 100vh;
+  color: var(--dark-brown);
 }
 
 .cart-container {
@@ -15,10 +16,11 @@
 }
 
 .order-summary {
-  width: 300px;
+  width: 400px;
   background: var(--primary-opacity);
-  padding: 2rem;
+  padding: 20px;
   border-radius: 10px;
+  text-align: center;
 }
 
 .cart-table-header,
@@ -26,6 +28,7 @@
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr auto;
   align-items: center;
+
 }
 
 .cart-table-header {
@@ -48,14 +51,19 @@
 .summary-total {
   display: flex;
   justify-content: space-between;
+  padding: 8px 0;
 }
 
 .summary-total {
-  font-size: 1.5rem;
   font-weight: bold;
+  padding-top: 12px;
 }
 
 .checkout-btn {
   width: 100%;
   margin-top: 1.5rem;
+}
+
+.icon-btn{
+  cursor: pointer;
 }
