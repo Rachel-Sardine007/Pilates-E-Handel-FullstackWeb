@@ -24,12 +24,35 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: [true, "Please add a quantity"],
         },
+        color: {
+          type: String,
+        }
       },
     ],
     totalPrice: {
       type: Number,
       required: [true, "Please add a total price"],
     },
+    shippingInformation: [
+      {      
+        firstname: { 
+          type: String,
+        },
+        lastname: {
+          type: String,
+        },
+        address: {
+          type: String,
+        },
+        city: {
+          type: String,
+        },
+        postcode: {
+          type: String,
+        },
+      }
+
+    ],
     paymentMethod: {
       type: String,
       required: [true, "Please add a payment method"],

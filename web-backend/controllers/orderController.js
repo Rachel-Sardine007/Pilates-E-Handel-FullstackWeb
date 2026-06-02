@@ -7,9 +7,8 @@ const Order = require("../models/orderModel");
 // @access  Private
 const getOrder = asyncHandler(async(req,res) => {
 
-    const orders = await Order.find({user: req.user.id});
-
-    res.status(200).json(orders);
+    const order = await Order.find({user: req.user._id});
+    res.status(200).json(order);
 
 });
 
@@ -29,7 +28,7 @@ const createOrder = asyncHandler(async(req,res) => {
 
     //create the order in database
     const order = await Order.create({
-        user: req.user.id,
+        user: req.user._id,
         items,
         totalPrice,
         paymentMethod,

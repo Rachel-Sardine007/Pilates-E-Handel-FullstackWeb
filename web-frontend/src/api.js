@@ -96,6 +96,13 @@ export async function getProducts() {
   });
 }
 
+// create order
+export async function createOrder(orderData){
+  return request("/orders", {
+    method: "POST",
+    body: JSON.stringify(orderData),
+  });
+};
 
 // ======================
 // AUTH FUNCTIONS
@@ -132,6 +139,8 @@ export default {
   registerUser,
   loginUser,
   getProducts,
+  getOrder,
+  createOrder,
   logoutUser,
   saveToken,
 };

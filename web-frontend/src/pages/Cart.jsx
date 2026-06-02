@@ -68,7 +68,7 @@ function Cart() {
                     {/* empty cart */}
                     {cartItems.length === 0 && <p>Your cart is empty.</p>}
 
-                    <button className="remove-btn">
+                    <button>
                         <Link className="links" to="/shop"><FiArrowLeft className="icon-btn"/> Continue shopping</Link>
                     </button>
 

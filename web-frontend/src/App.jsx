@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
-// import Cart from "./pages/Cart";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import About from './pages/About';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Confirmation from './pages/Confirmation';
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register/>} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/confirmation' element={<Confirmation />} />
       </Routes>
 
       <Footer />
