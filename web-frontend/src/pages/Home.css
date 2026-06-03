@@ -66,48 +66,6 @@
   width: 100%;
 }
 
-.product-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background:var(--light-opacity);
-  overflow: hidden;
-}
-
-.product-card img{
-  width: 90%;
-  border-radius: 10px;
-}
-
-.product-image{
-  position: relative;
-}
-
-.color-options{
-  position: absolute;
-  bottom: 65px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  gap: 0.5rem;
-
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background-color: var(--light-opacity);
-}
-
-.color-options:empty{
-  display: none;
-}
-
-.product-card:hover .color-options{
-  opacity: 1;
-}
-
 .about-studio {
   background-color: var(--primary);
   color: var(--light);

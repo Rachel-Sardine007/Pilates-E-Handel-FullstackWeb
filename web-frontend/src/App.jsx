@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Confirmation from './pages/Confirmation';
+import Favorites from './pages/Favorites';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/confirmation' element={<Confirmation />} />
+        <Route path='/favorites' element={<Favorites />} />
       </Routes>
 
       <Footer />

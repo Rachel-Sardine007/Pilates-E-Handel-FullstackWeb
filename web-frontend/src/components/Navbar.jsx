@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FiSearch, FiShoppingBag, FiUser, FiX, FiMenu } from "react-icons/fi";
+import { FiSearch, FiShoppingBag, FiUser, FiX, FiMenu, FiHeart } from "react-icons/fi";
 import "./Navbar.css";
 import { useCart } from '../contexts/CartContext.jsx';
 import { useState } from "react";
@@ -26,6 +26,7 @@ function Navbar() {
             <Link to={'/login'}>
                 <FiUser className="nav-icon"/>
             </Link>
+            <Link to={'/favorites'}><FiHeart className="nav-icon"/></Link>
             <Link to={'/cart'}>
                 <FiShoppingBag className="nav-icon"/>
             </Link>

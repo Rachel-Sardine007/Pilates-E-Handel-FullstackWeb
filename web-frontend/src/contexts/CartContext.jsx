@@ -51,11 +51,11 @@ export function CartProvider({ children }) {
     )
   };
 
-// empty cart
-const clearCart = () => {
-  setCartItems([])
-  localStorage.removeItem('cart')
-};
+  // empty cart
+  const clearCart = () => {
+    setCartItems([])
+    localStorage.removeItem('cart')
+  };
 
   // calculate item price
   const totalPrice = cartItems.reduce(
@@ -67,19 +67,42 @@ const clearCart = () => {
     (sum, item) => sum + item.quantity, 0
   );
 
-  return (
-    <CartContext.Provider value={{
-      cartItems,
-      addToCart,
-      removeFromCart,
-      updateQuantity,
-      totalPrice,
-      cartCount,
-      clearCart
-    }}>
-      {children}
-    </CartContext.Provider>
-  )
+  // add Favorites 
+  const[favorites, setFavorites] = useState([]);
+
+  const addToFavorites = (product) => {
+    setFavorites((prev) => {
+      const exists = prev.find(
+        (item) => item._id === product._id
+      );
+
+      if(exists) return prev;
+
+      return [...prev, product];
+    });
+  };
+
+  // remove fav
+  const removeFavorites = (productId) => {
+      setFavorites((prev) => prev.filter((item) => item._id !== productId))
+  };
+
+    return (
+      <CartContext.Provider value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        totalPrice,
+        cartCount,
+        clearCart,
+        favorites,
+        addToFavorites,
+        removeFavorites
+      }}>
+        {children}
+      </CartContext.Provider>
+    )
 }
 
 // Custom hook

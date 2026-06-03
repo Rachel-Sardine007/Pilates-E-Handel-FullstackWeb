@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { FiPlusCircle, FiHeart } from "react-icons/fi";
 import "./Shop.css";
 import { getProducts } from '../api';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../contexts/CartContext'; // cartContext
+import ProductCard from '../components/ProductCard'; // reusable product cart
 
 function Shop() {
-    const {addToCart} = useCart();
+    const {addToCart, favorites, addToFavorites, removeFavorites} = useCart();
     const [products, setProducts] = useState([]);
 
     // filter state
@@ -129,44 +130,24 @@ function Shop() {
                     {/* PRODUCT CARD */}
                     <div className="product-grid">
                         {filteredProducts.map((product) => (
-                        <div className="product-card" key={product._id}>
-                            <div className='shop-product-image'>
-                                <img className = "product-img"
-                                src={product.image}
-                                alt={product.name}
-                                />
-                                <FiHeart className='shop-icon-btn'/>
-                                <div className='shop-color-options'>
-                                {(product.colors || []).map(color => (
-                                    <span 
-                                        key={color}
-                                        className={`color ${color}`}  
-                                        onClick={()=> handleColorSelect(product._id, color)}
-                                        style={{
-                                            outline: selectedColor[product._id] === color ? '2px solid black' : 'none',
-                                            outlineOffset: '2px',
-                                            cursor:'pointer'
-                                        }}  
-                                    />
-                                ))}
-                                </div>
-                            </div>
-
-                            <p>{product.name}</p>
-                            <p>{product.price} kr</p>
-
-                            <button 
-                                className="product-btn"
-                                onClick={()=> {
+                            <ProductCard 
+                                key={product._id}
+                                product={product}
+                                selectedColor={selectedColor[product._id]}
+                                onColorSelect={handleColorSelect}
+                                onAddToCart={(product) => {
                                     if (!selectedColor[product._id] && product.colors.length > 0){
-                                        alert('Please select a color');
-                                        return;
-                                    }
-                                    addToCart({...product, selectedColor: selectedColor[product._id]})
-                                }}>
-                                Add to Cart
-                            </button>
-                        </div>
+                                            alert('Please select a color');
+                                            return;
+                                        }
+
+                                    addToCart({...product, selectedColor: selectedColor[product._id]});
+                                }}
+
+                                isFavorites={(favorites || []).some((item) => item._id === product._id)}
+                                addToFavorites={addToFavorites}
+                                removeFavorites={removeFavorites}
+                            />
                         ))}
 
                         {filteredProducts.length === 0 && (

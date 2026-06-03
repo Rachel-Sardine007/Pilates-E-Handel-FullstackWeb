@@ -1,13 +1,13 @@
 import "./Home.css";
 import React, { useState, useEffect } from 'react';
-import {getProducts} from "../api.js";
+import { getProducts } from "../api.js";
 import { Link } from "react-router-dom";
 import { useCart } from '../contexts/CartContext.jsx';
 import { FaStar } from "react-icons/fa";
+import ProductCard from "../components/ProductCard.jsx";
 
 function Home() {
-    const {addToCart} = useCart();
-
+    const {addToCart, favorites, addToFavorites, removeFavorites} = useCart();
     const [products, setProducts] = useState([]);
     // for add to cart 
     const [selectedColor, setSelectedColor] = useState({});
@@ -29,7 +29,7 @@ function Home() {
     }, []);
 
     // select color
-        const handleColorSelect = (productId, color) => {
+    const handleColorSelect = (productId, color) => {
         setSelectedColor(prev => ({
             ...prev,
             [productId]: prev[productId] === color ? null : color // toggle off if same color selected
@@ -67,42 +67,27 @@ function Home() {
 
                 <div className="product-grid">
                     {products.map((product) => (
-                        <div className="product-card" key={product._id}>
-                            <div className="product-image">
-                                <img
-                                src={product.image}
-                                alt={product.name}
-                                />
-                                <div className='color-options'>
-                                {(product.colors || []).map(color => (
-                                    <span 
-                                        key={color}
-                                        className={`color ${color}`}  
-                                        onClick={()=> handleColorSelect(product._id, color)}
-                                        style={{
-                                            outline: selectedColor[product._id] === color ? '2px solid black' : 'none',
-                                            outlineOffset: '2px',
-                                            cursor:'pointer'
-                                        }}  
-                                    />
-                                ))}
-                            </div>
-                                <p>{product.name}</p>
-                                <p>{product.price} kr</p>
-                            </div>
-
-                            <button 
-                                className="product-btn"
-                                onClick={()=> {
-                                if (!selectedColor[product._id] && product.colors.length > 0){
-                                    alert('Please select a color');
+                        <ProductCard
+                            key={product._id}
+                            product={product}
+                            selectedColor={selectedColor[product._id]}
+                            onColorSelect={handleColorSelect}
+                            onAddToCart={(product) => {
+                                if (!selectedColor[product._id] && product.colors.length > 0) {
+                                    alert("Please select a color");
                                     return;
                                 }
-                                addToCart({...product, selectedColor: selectedColor[product._id]})
-                            }}>
-                                Add to Cart
-                            </button>
-                        </div>
+
+                                addToCart({
+                                    ...product,
+                                    selectedColor: selectedColor[product._id],
+                                });
+                            }}
+                            isFavorites={(favorites || []).some(
+                                (item) => item._id === product._id)}
+                            addToFavorites={addToFavorites}
+                            removeFavorites={removeFavorites}
+                        />
                     ))}
                 </div>
             </section>

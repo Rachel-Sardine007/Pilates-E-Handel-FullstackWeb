@@ -42,47 +42,8 @@
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
+  gap: 10px; 
   width: 100%;
-}
-
-.shop-icon-btn {
-  position: absolute;
-  top: 40px;
-  right: 30px;
-  color: var(--light-floral);
-  cursor: pointer;
-}
-
-.product-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.shop-product-image{
-  position: relative;
-}
-
-.shop-color-options{
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  gap: 0.5rem;
-
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background-color: var(--light-opacity);
-}
-
-.shop-product-image:hover .shop-color-options {
-  opacity: 1;
 }
 
 .color {
