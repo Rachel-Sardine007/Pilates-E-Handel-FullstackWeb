@@ -10,6 +10,7 @@
 
     width: 100%;
     padding: 20px 40px;
+    position: relative;
 }
 
 .nav-links {
@@ -50,4 +51,42 @@
 .nav-icon:hover{
     color: var(--accent);
     opacity: 0.6;
+}
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 1rem;
+  background: var(--primary);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--primary-opacity);
+  z-index: 100;
+}
+
+.mobile-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .nav-links,
+  .nav-icons {
+    display: none;
+  }
+
+  .menu-btn {
+    display: flex;
+  }
 }

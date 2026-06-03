@@ -28,13 +28,13 @@
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr auto;
   align-items: center;
-
 }
 
 .cart-table-header {
   border-bottom: 1px solid var(--dark-brown);
   padding-bottom: 1rem;
   margin-bottom: 1rem;
+  padding: 0.5rem;
 }
 
 .cart-product-info {
@@ -66,4 +66,8 @@
 
 .icon-btn{
   cursor: pointer;
+}
+
+.error {
+  color: red;
 }

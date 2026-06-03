@@ -15,13 +15,13 @@ function Cart() {
 
     const handleCheckout = () =>{
         if(!isLoggedIn){
-            setError("Please log in to continue to checkout");
-            navigate('/');
+            navigate('/login');
             return;
         }
         
-        if (cartcount === 0){
+        if (cartCount === 0){
             setError("Please add item first to continue to checkout");
+            return;
         }
 
         navigate('/checkout');
@@ -89,8 +89,6 @@ function Cart() {
                         <Link className="links" to="/shop"><FiArrowLeft className="icon-btn"/><u>Continue shopping</u></Link>
                         
                     </p>
-                    <p>{error}</p>
-
                 </div>
 
                 {/* RIGHT SIDE */}
@@ -114,7 +112,7 @@ function Cart() {
                         <span>Total  </span>
                         <span>{totalPrice + shipping} kr</span>
                     </div>
-
+                    {error && <p className='error'>{error}</p>}
                     <button className="product-btn" onClick={handleCheckout}>Checkout</button>
                     <br />
                     <small>

@@ -56,6 +56,7 @@
 .section-header{
   width: 100%;
   align-self: flex-start;
+  color: var(--dark-brown);
 }
 
 .product-grid {
@@ -83,6 +84,21 @@
   position: relative;
 }
 
+.color-options{
+  position: absolute;
+  bottom: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 0.5rem;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: var(--light-opacity);
+}
 
 .color-options:empty{
   display: none;
@@ -123,6 +139,7 @@
 
   height: 500px;
   padding: 80px;
+  color: var(--dark-brown);
 }
 
 .review-header{
