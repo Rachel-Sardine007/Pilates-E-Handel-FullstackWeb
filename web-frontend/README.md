@@ -1,18 +1,192 @@
-# React + Vite
+# FORMA – Pilates & Wellness E-Commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About the Project
 
-Currently, two official plugins are available:
+FORMA is a full-stack e-commerce application inspired by modern pilates studios and wellness brands. The website combines a premium studio experience with online shopping functionality, allowing users to browse products, save favorites, add items to the cart, complete purchases, and manage their accounts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The project was developed using React for the frontend and Node.js, Express, MongoDB Atlas for the backend.
 
-## React Compiler
+### Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+* Home page with hero section and studio presentation
+* Product catalog with category filtering
+* Product color selection
+* Favorites (wishlist)
+* Shopping cart
+* Checkout and payment flow
+* User registration and login
+* Order confirmation page
+* Responsive design for desktop and mobile
+* MongoDB database integration
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+# Frontend Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Navigate to the frontend folder:
+
+```bash
+cd web-frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Frontend runs on:
+
+```txt
+http://localhost:5173
+```
+
+---
+
+# Backend Setup
+
+Navigate to the backend folder:
+
+```bash
+cd web-backend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+ `.env` file in the backend root directory for required environment variables.
+
+Start the backend server:
+
+```bash
+npm run dev
+```
+
+Backend runs on:
+
+```txt
+http://localhost:3000
+```
+
+---
+
+# Test User
+
+Use the following account to test the application:
+
+Email:
+
+```txt
+user@test.com
+```
+
+Password:
+
+```txt
+password
+```
+
+---
+
+# Environment Variables
+
+`.env` file inside the backend folder:
+
+```env
+PORT=3000
+
+CONNECTION_STRING=your_mongodb_connection_string
+
+ACCESS_TOKEN_SECRET=your_jwt_secret
+```
+
+---
+
+# MongoDB Atlas Configuration
+
+To allow external testing, has added the following IP address under: MongoDB Atlas → Network Access
+
+```txt
+0.0.0.0/0
+```
+
+This allows the database connection from external machines.
+
+---
+
+# Project Structure
+
+```txt
+GRA-FullstackWeb/
+│
+├── web-backend/
+│   │
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── .env
+│   ├── server.js
+│   ├── constants.js
+│   └── package.json
+│
+├── web-frontend/
+│   │
+│   ├── public/
+│   │   └── images/
+│   │
+│   ├── src/
+│   │   ├── components/
+│   │   ├── contexts/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── assets/
+│   │   ├── api.jsx
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx
+│   │
+│   └── package.json
+│
+└── README.md
+```
+
+---
+
+# Technologies Used
+
+### Frontend
+
+* React
+* React Router DOM
+* Context API
+* CSS3
+* React Icons
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* JWT Authentication
+* bcrypt
+
+---
+
+# Author
+
+Developed as part of the SYSM9 Web Development course project.
+
+Sardine © 2026
