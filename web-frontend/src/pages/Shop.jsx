@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiPlusCircle } from "react-icons/fi";
+import { FiPlusCircle, FiHeart } from "react-icons/fi";
 import "./Shop.css";
 import { getProducts } from '../api';
 import { useCart } from '../contexts/CartContext';
@@ -72,7 +72,7 @@ function Shop() {
                 {/* FILTER SIDEBAR */}
                 <aside className="filter-sidebar">
                     <div className="filter-section">
-                        <h3>CATEGORIES</h3>
+                        <p><strong>CATEGORIES</strong></p>
                         {/* dynamic categories */}
                         {categories.map(cat => (
                             <p
@@ -89,7 +89,7 @@ function Shop() {
                     </div>
 
                     <div className="filter-section">
-                        <p>Price</p>
+                        <p><strong>Price</strong></p>
 
                         <input
                             type="range"
@@ -99,15 +99,15 @@ function Shop() {
                             onChange={(e) => setMaxPrice(Number(e.target.value))}
                         />
                         <div className="price-range">
-                            <span>0</span>
+                            <span>50</span>
                             <span>{maxPrice} kr</span>
                         </div>
                     </div>
 
                     <div className="filter-section">
-                        <p>Color</p>
+                        <p><strong>Color</strong></p>
 
-                        <div className="color-options">
+                        <div className="filter-color">
                             {allColors.map(color => (
                                 <span 
                                     key={color}
@@ -130,13 +130,13 @@ function Shop() {
                     <div className="product-grid">
                         {filteredProducts.map((product) => (
                         <div className="product-card" key={product._id}>
-                            <img className = "product-img"
-                            src={product.image}
-                            alt={product.name}
-                            />
-                            <p>{product.name}</p>
-                            <p>{product.price} kr</p>
-                            <div className='color-options'>
+                            <div className='shop-product-image'>
+                                <img className = "product-img"
+                                src={product.image}
+                                alt={product.name}
+                                />
+                                <FiHeart className='shop-icon-btn'/>
+                                <div className='shop-color-options'>
                                 {(product.colors || []).map(color => (
                                     <span 
                                         key={color}
@@ -149,7 +149,11 @@ function Shop() {
                                         }}  
                                     />
                                 ))}
+                                </div>
                             </div>
+
+                            <p>{product.name}</p>
+                            <p>{product.price} kr</p>
 
                             <button 
                                 className="product-btn"

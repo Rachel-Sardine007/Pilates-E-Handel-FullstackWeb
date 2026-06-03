@@ -37,12 +37,12 @@
   margin-bottom: 1rem;
 }
 
-.product-info {
+.cart-product-info {
   display: flex;
   gap: 1rem;
 }
 
-.product-info img {
+.cart-product-info img {
   width: 80px;
   border-radius: 8px;
 }

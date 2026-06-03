@@ -16,8 +16,12 @@ function Cart() {
     const handleCheckout = () =>{
         if(!isLoggedIn){
             setError("Please log in to continue to checkout");
-            navigate('/login');
+            navigate('/');
             return;
+        }
+        
+        if (cartcount === 0){
+            setError("Please add item first to continue to checkout");
         }
 
         navigate('/checkout');
@@ -48,7 +52,7 @@ function Cart() {
                     {cartItems.map(item => (
                         <div className="cart-item" key={`${item._id}-${item.selectedColor}`}>
 
-                            <div className="product-info">
+                            <div className="cart-product-info">
                                 <img
                                     src={item.image}
                                     alt={item.name}
@@ -65,16 +69,16 @@ function Cart() {
                             
                             {/* update quantity */}
                             <div>
-                                <FiMinus className="icon-btn" onClick={()=> updateQuantity(item._id, -1)}/>
+                                <FiMinus className="cart-icon-btn" onClick={()=> updateQuantity(item._id, -1)}/>
                                 <span>{item.quantity}</span>
-                                <FiPlus className="icon-btn" onClick={()=> updateQuantity(item._id, 1)}/>
+                                <FiPlus className="cart-icon-btn" onClick={()=> updateQuantity(item._id, 1)}/>
                             </div>
 
                             {/* 商品总价 */}
                             <p>{item.price * item.quantity}</p>
 
                             {/* remove item */}
-                            <FiXCircle className="icon-btn" onClick={()=> removeFromCart(item._id)}/>
+                            <FiXCircle className="cart-icon-btn" onClick={()=> removeFromCart(item._id)}/>
                         </div>
                     ))}
 
@@ -83,7 +87,9 @@ function Cart() {
 
                     <p>
                         <Link className="links" to="/shop"><FiArrowLeft className="icon-btn"/><u>Continue shopping</u></Link>
+                        
                     </p>
+                    <p>{error}</p>
 
                 </div>
 

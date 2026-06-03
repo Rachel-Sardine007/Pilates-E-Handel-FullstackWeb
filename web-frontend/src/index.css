@@ -16,7 +16,7 @@
 
   --primary-opacity:rgba(123, 109, 141, 0.15);
   --floral-opacity: rgba(255, 252, 242, 0.5);
-  --light-opacity: rgba(255, 255, 255, 0.25);
+  --light-opacity: rgba(255, 255, 255, 0.3);
 
   --sans: "PT Serif", serif;
   --heading: "Inter", sans-serif;
@@ -80,6 +80,10 @@ a{
   color:inherit;
 }
 
+body{
+  font-family: var(--sans);
+}
+
 button{
   width: 100%;
   padding: 0.5rem;
@@ -87,11 +91,9 @@ button{
   color: var(--light-floral);
   border: none;
   border-radius: 10px;
-  margin-top: 10px;
-  margin-right: 20px;
   transition: transform 0.3s ease;
   cursor: pointer;
-
+  margin: 0.5rem;
   font-size: 16px;
 }
 
@@ -102,6 +104,7 @@ button:hover{
 img{
   max-width: 100%;
   display: block;
+  margin: 1rem;
 }
 
 /* tablet */

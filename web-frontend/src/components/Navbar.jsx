@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import {FiSearch, FiShoppingBag, FiUser} from "react-icons/fi";
 import "./Navbar.css";
+import { useCart } from '../contexts/CartContext.jsx';
 
 function Navbar() {
+    const { cartCount } = useCart();
+
     return ( 
     <nav className="navbar">
         <div className="nav-logo">
@@ -21,6 +24,9 @@ function Navbar() {
             </Link>
             <Link to={'/cart'}>
                 <FiShoppingBag className="nav-icon"/>
+            </Link>
+             <Link to={'/cart'}>
+            <small>({cartCount})</small>
             </Link>
         </div>
     </nav>

@@ -1,11 +1,12 @@
 import React from 'react';
 import productImg from '/images/product.png';
+import './About.css';
 
 function About() {
     return ( 
         <div className='about'>
-            <div className="about-text">
-                <h3 className="section-subtitle">About FORMA</h3>
+            <div className="about-content">
+                <h1>About FORMA</h1>
 
                 <h2>A modern studio rooted in movement and balance.</h2>
 

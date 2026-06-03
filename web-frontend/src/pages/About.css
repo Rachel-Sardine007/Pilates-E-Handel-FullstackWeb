@@ -1,0 +1,20 @@
+.about{
+    height: 90vh;
+    display: flex;
+    background: var(--primary-opacity);
+
+    align-items: center;
+    justify-content:center;
+}
+
+.about-content {
+  width: 60%;
+  text-align: center;
+  color: var(--dark-brown);
+}
+
+.about-image {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

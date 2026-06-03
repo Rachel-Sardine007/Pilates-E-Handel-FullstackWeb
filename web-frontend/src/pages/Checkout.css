@@ -18,6 +18,7 @@
 
 .checkout-info-name{
     display: flex;
+    flex-direction: column;
 }
 
 .payment-options span{
@@ -27,6 +28,8 @@
     padding: 10px;
     border-radius: 8px;
     justify-content: space-between;
+    height: 25px;
+    margin: 10px;
 }
 
 .payment-options img{

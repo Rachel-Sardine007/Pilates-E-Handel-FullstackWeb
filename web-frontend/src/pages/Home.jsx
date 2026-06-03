@@ -68,26 +68,27 @@ function Home() {
                 <div className="product-grid">
                     {products.map((product) => (
                         <div className="product-card" key={product._id}>
-                            <img className = "product-img"
-                            src={product.image}
-                            alt={product.name}
-                            />
-                            <p>{product.name}</p>
-                            <p>{product.price} kr</p>
-
-                            <div className='color-options'>
-                            {(product.colors || []).map(color => (
-                                <span 
-                                    key={color}
-                                    className={`color ${color}`}  
-                                    onClick={()=> handleColorSelect(product._id, color)}
-                                    style={{
-                                        outline: selectedColor[product._id] === color ? '2px solid black' : 'none',
-                                        outlineOffset: '2px',
-                                        cursor:'pointer'
-                                    }}  
+                            <div className="product-image">
+                                <img
+                                src={product.image}
+                                alt={product.name}
                                 />
-                            ))}
+                                <div className='color-options'>
+                                {(product.colors || []).map(color => (
+                                    <span 
+                                        key={color}
+                                        className={`color ${color}`}  
+                                        onClick={()=> handleColorSelect(product._id, color)}
+                                        style={{
+                                            outline: selectedColor[product._id] === color ? '2px solid black' : 'none',
+                                            outlineOffset: '2px',
+                                            cursor:'pointer'
+                                        }}  
+                                    />
+                                ))}
+                            </div>
+                                <p>{product.name}</p>
+                                <p>{product.price} kr</p>
                             </div>
 
                             <button 
@@ -116,7 +117,7 @@ function Home() {
                     />
                 </div>
                 <div className="about-text">
-                    <h2 className="section-subtitle">About FORMA</h2>
+                    <h2>About FORMA</h2>
 
                     <h3>A modern studio rooted in movement and balance.</h3>
 
