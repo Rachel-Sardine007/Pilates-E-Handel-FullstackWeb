@@ -110,7 +110,7 @@ img{
 /* tablet */
 @media (max-width: 1024px){
   .product-grid{
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   h1{
     font-size: 36px;
@@ -126,5 +126,10 @@ img{
 @media (max-width: 768px){
   .product-grid {
     grid-template-columns: 1fr;
+  }
+
+  .navbar{
+    width: 100%;
+    position: relative;
   }
 }

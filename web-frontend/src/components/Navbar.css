@@ -88,5 +88,6 @@
 
   .menu-btn {
     display: flex;
+    text-align: right;
   }
 }

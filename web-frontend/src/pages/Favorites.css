@@ -1,0 +1,9 @@
+.favorites-page{
+    background: var(--primary-opacity);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    margin: 90px;
+
+    color: var(--dark-brown);
+}

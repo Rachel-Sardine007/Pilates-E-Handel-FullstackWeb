@@ -1,6 +1,7 @@
 import { useCart } from '../contexts/CartContext';
 import ProductCard from '../components/ProductCard';
 import React, { useState } from 'react';
+import './Favorites.css';
 
 
 function Favorites() {
